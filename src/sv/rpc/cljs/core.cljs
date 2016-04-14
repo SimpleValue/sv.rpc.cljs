@@ -9,7 +9,8 @@
       (let [params-key (keyword (str (name (:format config :edn)) "-params"))
             response (<! (http/post
                           (:path config)
-                          {params-key {:fn fn
+                          {:with-credentials? false
+                           params-key {:fn fn
                                        :args args}}))
             body (:body response)]
         (if (contains? body :result)
@@ -17,7 +18,7 @@
           (ex-info
            "RPC failed"
            {:error :rpc/failed}
-           (:body response)))))))
+           body))))))
 
 (def default-config {:path "/rpc"
                      :format :edn})
