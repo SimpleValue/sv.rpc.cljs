@@ -10,12 +10,14 @@
             response (<! (http/post
                           (:path config)
                           {params-key {:fn fn
-                                       :args args}}))]
-        (or (:result (:body response))
-            (ex-info
-             "RPC failed"
-             {:error :rpc/failed}
-             (:body response)))))))
+                                       :args args}}))
+            body (:body response)]
+        (if (contains? body :result)
+          (:result body)
+          (ex-info
+           "RPC failed"
+           {:error :rpc/failed}
+           (:body response)))))))
 
 (def default-config {:path "/rpc"
                      :format :edn})

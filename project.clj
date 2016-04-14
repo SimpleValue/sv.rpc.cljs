@@ -1,4 +1,4 @@
-(defproject sv.rpc/cljs "0.1.0-SNAPSHOT"
+(defproject sv.rpc/cljs "0.2.0-SNAPSHOT"
   :description "A ClojureScript client for sv.rpc."
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
